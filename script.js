@@ -43,6 +43,30 @@ if(pilotName.value === "" || copilotName.value === "" || fuelLevel.value === "" 
 else if (isNaN(pilotName.value)=== false || isNaN(copilotName.value) === false || isNaN(fuelLevel.value) || isNaN(cargoMass.value)){
    window.alert("All fields must contain correct type of data");
 }
+else {
+   faultyItems.style.visibility="visible";
+   document.getElementById('pilotStatus').innerHTML = `Pilot ${pilotName.value} is ready for launch.`;
+   document.getElementById('copilotStatus').innerHTML = `Co-Pilot ${copilotName.value} is ready for launch.`;
+
+   if(fuelLevel.value < 10000 && cargoMass.value <= 10000){ 
+      fuelStatus.innerHTML="Fuel level to low for launch.";
+      launchStatus.innerHTML="Not Ready for Launch";
+      launchStatus.style.color="red";
+
+   } else if(fuelLevel.value >= 10000 && cargoMass.value > 10000){
+      cargoStatus.innerHTML="Cargo mass too heavy for launch.";
+      launchStatus.innerHTML="Not Ready for Launch";
+      launchStatus.style.color="red";
+   }else if(fuelLevel.value < 10000 && cargoMass.value > 10000){
+      fuelStatus.innerHTML="Fuel level to low for launch.";
+      cargoStatus.innerHTML="Cargo mass too heavy for launch.";
+      launchStatus.innerHTML="Not Ready for Launch";
+      launchStatus.style.color="red";
+   } else { 
+      launchStatus.innerHTML="Ready for Launch";
+      launchStatus.style.color="green";
+   }
+}
 
 
 
@@ -59,24 +83,30 @@ else if (isNaN(pilotName.value)=== false || isNaN(copilotName.value) === false |
 
 
   
-   if (isNaN(pilotName.value)) {
-      document.getElementById('pilotStatus').innerHTML = `Pilot ${pilotName.value} is ready for launch.`;
+   // if (isNaN(pilotName.value)) {
+   //    document.getElementById('pilotStatus').innerHTML = `Pilot ${pilotName.value} is ready for launch.`;
 
-   }
-   if(isNaN(copilotName.value)){
-      document.getElementById('copilotStatus').innerHTML = `Co-Pilot ${copilotName.value} is ready for launch.`;
-   }
-   if(fuelLevel.value < 10000){
-      faultyItems.style.visibility="visible";
-      fuelStatus.innerHTML="Fuel level to low for launch.";
-      launchStatus.innerHTML="Shuttle not ready for launch.";
-      launchStatus.style.color="red";
-   } 
-   if(cargoMass.value > 10000){
-      faultyItems.style.visibility="visible";
-      cargoStatus.innerHTML="Cargo mass too heavy for launch.";
-      launchStatus.style.color="red";
-   }
+   // }
+   // if(isNaN(copilotName.value)){
+   //    document.getElementById('copilotStatus').innerHTML = `Co-Pilot ${copilotName.value} is ready for launch.`;
+   // }
+   // if(fuelLevel.value < 10000){
+   //    faultyItems.style.visibility="visible";
+   //    fuelStatus.innerHTML="Fuel level to low for launch.";
+   //    launchStatus.innerHTML="Shuttle not ready for launch.";
+   //    launchStatus.style.color="red";
+   // } else {
+   //    faultyItems.style.visibility = "hidden";
+   //    fuelStatus.innerHTML="Fuel level high enough for launch";
+   // }
+   // if(cargoMass.value > 10000 && fuelLevel.value >= 10000){
+   //    faultyItems.style.visibility="visible";
+   //    cargoStatus.innerHTML="Cargo mass too heavy for launch.";
+   //    launchStatus.style.color="red";
+   // }else {
+   //    faultyItems.style.visibility = "hidden";
+   //    cargoStatus.innerHTML="Cargo mass low enough for launch";
+   // }
    
    
 //    if(isNaN(copilotName.value) && (copilotName.value !== "")){
